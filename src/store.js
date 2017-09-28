@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-09-28 11:06:23
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-09-28 11:15:06
+* @Last Modified time: 2017-09-28 12:49:43
 */
 
 'use strict';
@@ -12,7 +12,7 @@ const STOREKEY = "vue-todo"
 
 export default{
   fetch : function(){
-   return JSON.parse(window.localStorage.getItem(STOREKEY));
+   return JSON.parse(window.localStorage.getItem(STOREKEY)) || [];
 
 },
   save : function(items){

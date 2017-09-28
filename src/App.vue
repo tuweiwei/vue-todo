@@ -4,7 +4,7 @@
     
     <input v-model="newItem" @keyup.enter="addNew"/>
     <ul>
-        <li v-for="item in items" :class="[liClass,{finished:item.isFinished}]" @click="toggleStatus(item)">代办事项：{{item.label}}</li>
+        <li v-for="item in items" :class="[liClass,{finished:item.isFinished}]" @click="toggleStatus(item)">{{item.statusMsg}}：{{item.label}}</li>
     </ul>
   </div>
 </template>
@@ -22,17 +22,26 @@ export default {
              items : Store.fetch(),
              liClass : 'liClass',
              newItem : '',
+             status : ['代办事项','已完成事项'],
+            
          }
 
   },
   methods : {
       toggleStatus : function(e){
         e.isFinished = !e.isFinished;
+         if(e.statusMsg == this.status[0]){
+
+           e.statusMsg = this.status[1];
+         }else{
+           e.statusMsg = this.status[0];
+         }
+         
       },
       addNew :       function(e){
 
           this.items.push({
-             label : this.newItem, isFinished : false
+             label : this.newItem, isFinished : false,statusMsg : this.status[0]
           });
          
          
